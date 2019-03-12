@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    购物车
+{% endblock %}
+{% block jq %}
+
+{% endblock %}
+{% block css %}
+    <style type="text/css">
+        label.mark {
+            background: url("/static/img/order/mark1.png") no-repeat -1px -1px;
+        }
+    </style>
+{% endblock %}
+
+{% block head %}
+    {% include 'head/head_top.html' %}
+{% endblock %}
+
+
+{% block main %}
+    {% include 'car_center.html' %}
+{% endblock %}

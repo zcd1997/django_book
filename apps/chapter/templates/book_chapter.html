@@ -1,0 +1,14 @@
+<div id="chapter_list">
+
+    <div style="width: 1200px;margin: auto">
+        <div id="detail_left">
+            <h2 style="text-align: center;font-weight: bold">{{ book.book_title }}</h2>
+        </div>
+        <div style="margin-top: 80px">
+            {% for chapter in chapters %}
+                <a href="{{ chapter.ch_url }}"
+                   style="font-size: 20px;font-weight: bold;color: #2e6da4"><p>{{ chapter.ch_name }}</p></a>
+            {% endfor %}
+        </div>
+    </div>
+</div>

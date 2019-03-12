@@ -1,0 +1,70 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    详情
+{% endblock %}
+{% block css %}
+
+{% endblock %}
+{% block jq %}
+    <script type="text/javascript">
+        $(function () {
+            {#添加购物车#}
+            $('#add').click(function () {
+                {#发送ajax请求#}
+                let add_url = 'http://127.0.0.1:8000/car/add/';
+                {#post请求提交参数#}
+                /**
+                 * data  传递的数据
+                 *       string类型  shop_id=1&number=1
+                 *       对象类型  传递的数据比较多的时候建议使用该方式(推荐)  {shop_id:1
+                     *                    number:1
+                     *       }
+                 *
+                 *     403错误 防止跨域攻击
+                 *     1> 如果是ajax请求直接使用  'csrfmiddlewaretoken': $('input[name=csrfmiddlewaretoken]').val()
+                 *     2> 也可以在服务端解决
+                 *     from django.views.decorators.csrf import csrf_exempt
+                 *     @csrf_exempt
+                 */
+                let data = {
+                    book_id: {{ book.book_id }},
+                    number: $('#number').val(),
+                    'csrfmiddlewaretoken': $('input[name=csrfmiddlewaretoken]').val()
+                };
+                if ($('#number').val() <= {{ book.book_stock }}) {
+                    $.post(add_url, data, function (result) {
+                        if (result && result.status === 200) {
+                            $('#gouwucar').text(result.car_count + ' ')
+                            alert('添加成功!!!!!')
+                        } else {
+                            alert('添加失败!!!!!')
+                        }
+                    })
+                } else {
+                    alert('添加商品数目超过库存量');
+                }
+
+            });
+            $('#btn1').click(function () {
+                $('#shop_params').show();
+                $('#shop_review').hide();
+            });
+            $('#btn2').click(function () {
+                $('#shop_params').hide();
+                $('#shop_review').show();
+            });
+        });
+    </script>
+{% endblock %}
+{% block head %}
+    {% include 'head/head_top.html' %}
+{% endblock %}
+
+{% block main %}
+    {% include 'detail_center.html' %}
+{% endblock %}
+
+{% block footer %}
+
+{% endblock %}

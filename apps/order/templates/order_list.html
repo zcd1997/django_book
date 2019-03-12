@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+
+{% block head %}
+    {% include 'head/head_top.html' %}
+{% endblock %}
+
+
+
+{% block main %}
+    {% for order in orders %}
+        <span>{{ order.order_code }}</span>
+        <span>{{ order.address }}</span>
+        <span>{{ order.mobile }}</span>
+
+    {% endfor %}
+
+{% endblock %}

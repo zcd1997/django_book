@@ -1,0 +1,49 @@
+{% load staticfiles %}
+<link href="{% static 'css/main/head_top.css' %}" rel="stylesheet" type="text/css">
+<div id="head_top">
+    <div style="width: 1200px;margin: auto">
+        <div id="head_top_left">
+            <span class="head_top_left_span"><span class="glyphicon glyphicon-home"><a href="/">首页</a></span></span>
+            <span> | </span>
+            <span>书库榜单</span>
+            <span> | </span>
+            <span>全书手机站</span>
+        </div>
+        <div id="head_top_right">
+            {% if request.user.is_authenticated %}
+                <span>Hi ,<a href="#" class="top_font">{{ request.user.username }}</a></span>
+                <span><a href="#" class="top_font">积分</a></span>
+                <span><a href="#" class="top_font">消息</a></span>
+                <span><a href="{% url 'showorder' %}" class="top_font">我的订单</a></span>
+                <span><a href="#" class="top_font">收藏夹</a><span
+                        class="glyphicon glyphicon-triangle-bottom"></span></span>
+                <span><a href="{% url 'logout' %}" class="top_font">退出</a></span>
+            {% else %}
+                <span class="top_font">欢迎来到这里</span>
+                <span><a href="{% url 'login' %}" class="top_font">请登录</a></span>
+                <span><a href="{% url 'register' %}" class="top_font">免费注册</a></span>
+            {% endif %}
+
+        </div>
+    </div>
+</div>
+<div id="head_search">
+    <div style="width: 1200px;height:180px;margin: auto">
+        <div id="serach_img_div">
+            <img src="/static/img/logo.png" style="width: 350px;height: 150px">
+        </div>
+        <div id="serach_form_div">
+            <form action="{% url 'search' %}" method="post" id="serach_form_id">
+                {% csrf_token %}
+                <input type="text" id="text_id" name="keyword">
+                <input type="submit" id="submit_id" value="搜索">
+            </form>
+        </div>
+        <a href="{% url 'car_list' %}">
+            <div id="serach_button_div">
+                <span class="glyphicon glyphicon-book"
+                      style="font-size: 12px;font-weight: bold;padding: 20px;"> 我的书架 </span>
+            </div>
+        </a>
+    </div>
+</div>

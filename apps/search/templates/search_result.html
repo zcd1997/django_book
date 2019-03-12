@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% block css %}
+    <style type="text/css">
+        #search_result > div > a > div {
+            float: left;
+            width: 200px;
+            height: 400px;
+            padding: 10px;
+            margin-left: 30px;
+            border: 1px;
+        }
+    </style>
+{% endblock %}
+
+{% block head %}
+    {% include 'head/head_top.html' %}
+{% endblock %}
+
+
+{% block main %}
+    {% for book in books %}
+        <div id="search_result">
+            <div style="width: 1200px;margin: auto">
+                <a href="{% url 'detail' %}?id={{ book.book_id }}">
+                    <div>
+                        <img src="{{ book.book_img }}" style="height: 250px;width: 150px;">
+                        <p>{{ book.book_title }}</p>
+                        <p>作者 : {{ book.book_author }}</p>
+                        <p>类型 : {{ book.cate.cate_list_text }}</p>
+                        <p style="white-space: nowrap ;overflow: hidden;  text-overflow:ellipsis;">{{ book.book_introduce }}</p>
+                    </div>
+                </a>
+            </div>
+        </div>
+
+    {% endfor %}
+
+{% endblock %}

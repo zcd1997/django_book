@@ -1,0 +1,30 @@
+{% load staticfiles %}
+<link href="{% static 'css/main/head_top.css' %}" rel="stylesheet" type="text/css">
+<div id="category_div">
+    <div style="width: 1200px;margin: auto">
+        <div id="category_top" style="margin-top: 25px;margin-left: 68px">
+            {% for category in categorys %}
+                <a href="{% url 'category' %}?cate={{ category.cate_id }}">
+                    <button type="button" class="btn btn-info">{{ category.cate_list_text }}</button>
+                </a>
+            {% endfor %}
+        </div>
+        <div id="category_list">
+            <div style="clear: both">
+                {% for book in books %}
+                    <a href="{% url 'detail' %}?id={{ book.book_id }}">
+                        <div>
+                            <img src="{{ book.book_img }}" style="height: 270px;width: 190px;">
+                            <p>{{ book.book_title }}</p>
+                            <p>作者 : {{ book.book_author }}</p>
+                            <p>类型 : {{ book.cate.cate_list_text }}</p>
+                            <p style="white-space: nowrap ;overflow: hidden;  text-overflow:ellipsis;">{{ book.book_introduce }}</p>
+                        </div>
+                    </a>
+                {% endfor %}
+
+            </div>
+        </div>
+    </div>
+
+</div>
