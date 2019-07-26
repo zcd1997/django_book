@@ -43,7 +43,6 @@ def register(request):
     if request.method == 'GET':
         return render(request, 'register_text.html')
     elif request.method == 'POST':
-
         try:
             with transaction.atomic():
                 username = request.POST.get('username')
@@ -91,7 +90,6 @@ def register(request):
 def ActivateHandler(request):
     token = request.GET.get('token')
     user_id = cache.get(token)
-
     if user_id:
         cache.delete(token)
         user = User.objects.get(pk=user_id)
@@ -100,3 +98,4 @@ def ActivateHandler(request):
         return HttpResponse(f"用户{user.username} 激活成功")
     else:
         return HttpResponse("激活用户信息过期，请重新申请激活邮件")
+

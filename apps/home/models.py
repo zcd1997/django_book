@@ -76,9 +76,6 @@ class Chapter(models.Model):
         verbose_name_plural = verbose_name
 
 
-
-
-
 class ShopCar(models.Model):
     car_id = models.AutoField(verbose_name='购物车ID', primary_key=True)
     number = models.IntegerField(verbose_name='小说数量', default=0)
